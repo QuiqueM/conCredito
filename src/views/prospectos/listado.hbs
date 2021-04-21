@@ -1,0 +1,40 @@
+<div class="container p-4">
+    
+    <div class="card ">
+        <div class="card-header">
+            <a href="/prospectos/nuevo" class="btn btn-success float-right">Nuevo</a>
+            <h3>Listado de Prospectos</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="text-center">
+                        <th >#</th>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Estatus</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each prospectos}}
+                    <tr class="text-center">
+                        <td>{{id}}</td>
+                        <td>{{nombre}}</td>
+                        <td>{{apellidoPaterno}} {{apellidoMaterno}}</td>
+                        <td>{{estatus}}</td>
+                        <td>
+                            <a href="/prospectos/ver/{{id}}" class="btn btn-primary btn-small">Ver</a>
+                        </td>
+                    </tr>
+                    {{else}}
+                        <td colspan="5" class="text-center">
+                            No tienes prospectos agregados
+                        </td>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+   
+</div>

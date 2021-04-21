@@ -1,0 +1,106 @@
+<div class="container py-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>Información del Prospecto</h3>
+        </div>
+        <div class="card-body">
+            <div class="form-row ">
+                <div class="col">
+                    <label for="">Nombre: *</label>
+                    <input type="text" value="{{prospecto.nombre}}" class="form-control" disabled>
+                </div>
+                <div class="col">
+                    <label for="">Primer Apellido: *</label>
+                    <input type="text" value="{{prospecto.apellidoPaterno}}" class="form-control" disabled >
+                </div>
+                <div class="col">
+                    <label for="">Segundo Apellido:</label>
+                    <input type="text" value="{{prospecto.apellidoMaterno}}" class="form-control" disabled>
+                </div>
+            </div>
+            <div class="form-row mt-2">
+                <div class="col">
+                    <label for="">Calle: *</label>
+                    <input type="text" value="{{prospecto.calle}}" class="form-control"  disabled>
+                </div>
+                <div class="col">
+                    <label for="">Numero: *</label>
+                    <input type="text" value="{{prospecto.numero}}" class="form-control"  disabled>
+                </div>
+                <div class="col">
+                    <label for="">Código Postal: *</label>
+                    <input type="text" value="{{prospecto.cp}}" class="form-control" disabled >
+                </div>
+            </div>
+            <div class="form-row mt-2">
+                <div class="col">
+                    <label for="">Colonia: *</label>
+                    <input type="text" value="{{prospecto.colonia}}" class="form-control"  disabled>
+                </div>
+                <div class="col">
+                    <label for="">Telefono: *</label>
+                    <input type="tel" value="{{prospecto.telefono}}" class="form-control"  disabled>
+                </div>
+            </div>
+            <div class="form-row mt-2">
+                <div class="col">
+                    <label for="">RFC: *</label>
+                    <input type="text" value="{{prospecto.rfc}}" class="form-control" disabled >
+                </div>
+                <div class="col">
+                    <label for="">Estatus: *</label>
+                    <input type="text" value="{{prospecto.estatus}}" class="form-control" disabled >
+                </div>
+            </div>
+            <div class="form-row mt-2">
+                <div class="col">
+                    <label for="">Observaciones</label>
+                    <textarea class="form-control" cols="30" rows="4" disabled>{{prospecto.observaciones}}</textarea>
+                </div>
+            </div>
+            <hr>
+            <h3>Documentos</h3>
+            <ul>
+                {{#each documentos}}
+                    <li><a href="../../files/{{documento}}" target="_blank">{{nombre}}</a></li>
+                {{/each}}
+            </ul>
+            
+        </div>
+        <div class="card-footer">
+            <form action="/prospectos/aceptar" method="post">
+                <input type="hidden" value="{{prospecto.id}}" name="id">
+                <button type="submit" class="btn btn-success">Aceptar</button>
+                <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#rechazado">Rechazar</button>
+            </form>
+            
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="rechazado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Rechazado</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="/prospectos/rechazar" method="post">
+                <p>Describa los motivos por los cuales esta rechazando al prospecto {{prospecto.nombre}}.</p>
+                <input type="hidden" name="id" value="{{prospecto.id}}">
+                <textarea name="observaciones" rows="4" cols="30" class="form-control"></textarea>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-danger">Aceptar</button>
+                </div>
+            </form>
+        </div>
+        
+        </div>
+    </div>
+    </div>
+</div>
+
